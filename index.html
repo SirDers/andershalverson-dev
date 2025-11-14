@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>ANDERS HALVERSON</title>
+    <title>Anders Halverson</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Large Header (visible at top only) -->
+    <!-- Big Header -->
     <header id="big-header">
         <nav>
             <a href="#home">HOME</a>
@@ -20,7 +20,7 @@
         </nav>
     </header>
 
-    <!-- Small Header (appears after scroll) -->
+    <!-- Small Header -->
     <header id="small-header">
         <nav>
             <a href="#home">HOME</a>
@@ -35,12 +35,18 @@
     <section id="home">
         <div class="overlay"></div>
 
-        <!-- Video slideshow background -->
-        <video autoplay muted loop id="bg-video">
-            <source src="temp.mp4" type="video/mp4">
+        <!-- Slideshow background -->
+        <video autoplay muted loop class="bg-video" id="video1">
+            <source src="video1.mp4" type="video/mp4">
+        </video>
+        <video autoplay muted loop class="bg-video" id="video2">
+            <source src="video2.mp4" type="video/mp4">
+        </video>
+        <video autoplay muted loop class="bg-video" id="video3">
+            <source src="video3.mp4" type="video/mp4">
         </video>
 
-        <div class="home-content">
+        <div class="home-content fade-in">
             <h1>ANDERS HALVERSON</h1>
             <h2>SOFTWARE ENGINEER // PRODUCER // GAME DESIGNER</h2>
         </div>
@@ -49,39 +55,101 @@
     <!-- PROJECTS -->
     <section id="projects">
         <h1>PROJECTS</h1>
-        <p>[insert here]</p>
+
+        <div class="timeline">
+
+            <!-- Quick Whips -->
+            <div class="project left fade-up">
+                <div class="content">
+                    <h2>Quick Whips</h2>
+                    <p class="date">Apr, 2022 — Jun, 2022</p>
+                    <img src="thumb1.png" alt="">
+                </div>
+            </div>
+
+            <!-- Breath of the Galaxies -->
+            <div class="project right fade-up">
+                <div class="content">
+                    <h2>Breath of the Galaxies</h2>
+                    <p class="date">Sep, 2022 — Nov, 2022</p>
+                    <img src="thumb2.png" alt="">
+                </div>
+            </div>
+
+            <!-- Super Short Bros. -->
+            <div class="project left fade-up">
+                <div class="content">
+                    <h2>Super Short Bros.</h2>
+                    <p class="date">Nov, 2024 — Dec, 2024</p>
+                    <img src="thumb3.png" alt="">
+                </div>
+            </div>
+
+            <!-- Gardens of New Babylon -->
+            <div class="project right fade-up">
+                <div class="content">
+                    <h2>Gardens of New Babylon</h2>
+                    <p class="date">Apr, 2025 — May, 2025</p>
+                    <img src="thumb4.png" alt="">
+                </div>
+            </div>
+
+            <!-- Justice is Blind -->
+            <div class="project left fade-up">
+                <div class="content">
+                    <h2>Justice is Blind</h2>
+                    <p class="date">Sep, 2025 — Present</p>
+                    <img src="thumb5.png" alt="">
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- RESUME -->
     <section id="resume">
         <h1>RESUME</h1>
-        <p>[insert here]</p>
+        <p>Resume content here.</p>
     </section>
 
     <!-- ABOUT -->
     <section id="about">
         <h1>ABOUT</h1>
-        <p>[insert here]</p>
+        <p>About text here.</p>
     </section>
 
     <!-- CONTACT -->
     <section id="contact">
         <h1>CONTACT</h1>
-        <p>[insert here]</p>
+        <p>Contact info here.</p>
     </section>
 
     <script>
-        // Show small header after scrolling past HOME
+        // Small header appears after scroll
         window.addEventListener('scroll', () => {
             const small = document.getElementById('small-header');
-            if (window.scrollY > window.innerHeight * 0.6) {
-                small.classList.add('show');
-            } else {
-                small.classList.remove('show');
-            }
+            const homeHeight = window.innerHeight * 0.7;
+            small.classList.toggle('show', window.scrollY > homeHeight);
         });
+
+        // Fade animations when elements enter view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('show');
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.fade-in, .fade-up').forEach(el => observer.observe(el));
+
+        // Video slideshow crossfade
+        const videos = [video1, video2, video3];
+        let current = 0;
+
+        setInterval(() => {
+            videos[current].classList.remove('visible');
+            current = (current + 1) % videos.length;
+            videos[current].classList.add('visible');
+        }, 8000);
     </script>
 
 </body>
-
 </html>
