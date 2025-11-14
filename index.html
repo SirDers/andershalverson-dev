@@ -1,32 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>ANDERS HALVERSON</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <header>
-        <h1>Anders Halverson</h1>
+
+    <!-- Large Header (visible at top only) -->
+    <header id="big-header">
+        <nav>
+            <a href="#home">HOME</a>
+            <a href="#projects">PROJECTS</a>
+            <a href="#resume">RESUME</a>
+            <a href="#about">ABOUT</a>
+            <a href="#contact">CONTACT</a>
+        </nav>
     </header>
 
+    <!-- Small Header (appears after scroll) -->
+    <header id="small-header">
+        <nav>
+            <a href="#home">HOME</a>
+            <a href="#projects">PROJECTS</a>
+            <a href="#resume">RESUME</a>
+            <a href="#about">ABOUT</a>
+            <a href="#contact">CONTACT</a>
+        </nav>
+    </header>
+
+    <!-- HOME -->
+    <section id="home">
+        <div class="overlay"></div>
+
+        <!-- Video slideshow background -->
+        <video autoplay muted loop id="bg-video">
+            <source src="temp.mp4" type="video/mp4">
+        </video>
+
+        <div class="home-content">
+            <h1>ANDERS HALVERSON</h1>
+            <h2>SOFTWARE ENGINEER // PRODUCER // GAME DESIGNER</h2>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
     <section id="projects">
-        <h2>Projects</h2>
-        <ul>
-            <li><a href="#">Project One</a></li>
-            <li><a href="#">Project Two</a></li>
-            <li><a href="#">Project Three</a></li>
-        </ul>
+        <h1>PROJECTS</h1>
+        <p>[insert here]</p>
     </section>
 
+    <!-- RESUME -->
+    <section id="resume">
+        <h1>RESUME</h1>
+        <p>[insert here]</p>
+    </section>
+
+    <!-- ABOUT -->
     <section id="about">
-        <h2>About Me</h2>
-        <p>I’m a software engineer and gameplay programmer and designer. I've led teams and have made several projects.</p>
+        <h1>ABOUT</h1>
+        <p>[insert here]</p>
     </section>
 
-    <footer>
-        <p>Contact me at <a href="mailto:anders.halverson.show.com">anders.halverson.show.com</a></p>
-    </footer>
+    <!-- CONTACT -->
+    <section id="contact">
+        <h1>CONTACT</h1>
+        <p>[insert here]</p>
+    </section>
+
+    <script>
+        // Show small header after scrolling past HOME
+        window.addEventListener('scroll', () => {
+            const small = document.getElementById('small-header');
+            if (window.scrollY > window.innerHeight * 0.6) {
+                small.classList.add('show');
+            } else {
+                small.classList.remove('show');
+            }
+        });
+    </script>
+
 </body>
+
 </html>
