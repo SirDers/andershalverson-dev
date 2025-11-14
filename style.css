@@ -17,6 +17,13 @@ h1 {
     text-align: center;
 }
 
+p {
+    text-align: left;
+    margin-left: 15%;
+    margin-right: 15%;
+    font-size: 24px;
+}
+
 /* Headers */
 #big-header {
     position: absolute;
@@ -221,6 +228,11 @@ h1 {
 
 .project.right::after {
     left: -12px;
+}
+
+/* RESUME */
+.resume a {
+    text-decoration: none;
 }
 
 /* Responsive */
