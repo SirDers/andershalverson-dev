@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Anders Halverson</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style=v1.css">
 </head>
 
 <body>
@@ -36,15 +36,10 @@
         <div class="overlay"></div>
 
         <!-- Slideshow background -->
-        <video autoplay muted loop class="bg-video" id="video1">
-            <source src="video1.mp4" type="video/mp4">
+        <video autoplay muted loop preload="auto" playsinline class="bg-video">
+            <source src="video.mp4" type="video/mp4">
         </video>
-        <video autoplay muted loop class="bg-video" id="video2">
-            <source src="video2.mp4" type="video/mp4">
-        </video>
-        <video autoplay muted loop class="bg-video" id="video3">
-            <source src="video3.mp4" type="video/mp4">
-        </video>
+
 
         <div class="home-content fade-in">
             <h1>ANDERS HALVERSON</h1>
@@ -97,33 +92,52 @@
             <!-- Justice is Blind -->
             <div class="project left fade-up">
                 <div class="content">
-                    <h2>Justice is Blind</h2>
-                    <p class="date">Sep, 2025 — Present</p>
-                    <img src="thumb5.png" alt="">
+	                <h2>Justice is Blind</h2>
+	                <p class="date">Sep, 2025 — Present</p>
+	                <img src="thumb5.png" alt="">
                 </div>
             </div>
         </div>
+        <!-- End -->
+        <p class="end">More to come!</p>
     </section>
 
     <!-- RESUME -->
     <section id="resume">
         <h1>RESUME</h1>
-        <iframe src="Halverson, Anders - Resume [Public].pdf" type="application/pdf" width="75%" height=1150px></iframe>
+        <iframe src="Halverson, Anders - Resume.pdf" type="application/pdf" width="75%" height=1150px></iframe>
     </section>
 
     <!-- ABOUT -->
     <section id="about">
-        <h1>ABOUT</h1>
-        <p>I am currently pursuing a Bachelor's degree in Computer Science with a concentration in Game Design and a minor in Mathematics at University of Wisconsin-Stout. My focus is on applying my programming, game design, and leadership skills to create innovative and fun video games, where tight and focused gameplay comes first. I've worked on several projects through my coursework and personal ambitions.</p>
+	    <h1>ABOUT</h1>
+        <div class="about">
+	        <img src="portrait.jpg" alt="" />
+	        <p>
+		        I'm Anders Halverson. I am currently pursuing a Bachelor's degree in Computer Science with a concentration in Game Design and a minor in Mathematics at University of Wisconsin-Stout.
+		        My focus is on applying my programming, game design, and leadership skills to create innovative and fun video games, where tight and focused gameplay comes first.
+		        I've worked on several projects through my coursework and personal ambitions.
+	        </p>
+        </div>
     </section>
 
     <!-- CONTACT -->
     <section id="contact">
-        <h1>CONTACT</h1>
-        <p>Email --  <a href="mailto:anders.halverson.show@gmail.com">anders.halverson.show@gmail.com</a></p>
-        <p>Phone -- <a href="tel:+11234567890">+1 (123) 456-7890</a></p>
-        <p>LinkedIn -- <a href="https://www.linkedin.com/in/anders-halverson-3b0766177">Link to profile</a></p>
-
+	    <h1>CONTACT</h1>
+        <div class="contact">
+            <a href="mailto:anders.halverson.show@gmail.com">
+                <img src="email-icon.svg" class="icon">
+                anders.halverson.show@gmail.com
+            </a>
+            <a href="https://www.linkedin.com/in/anders-halverson-3b0766177">
+                <img src="linkedin-icon.svg" class="icon">
+                LinkedIn
+            </a>
+            <a href="https://github.com/SirDers">
+	            <img src="github-icon.svg" class="icon">
+	            GitHub
+            </a>
+        </div>
     </section>
 
     <script>
@@ -142,16 +156,6 @@
         }, { threshold: 0.15 });
 
         document.querySelectorAll('.fade-in, .fade-up').forEach(el => observer.observe(el));
-
-        // Video slideshow crossfade
-        const videos = [video1, video2, video3];
-        let current = 0;
-
-        setInterval(() => {
-            videos[current].classList.remove('visible');
-            current = (current + 1) % videos.length;
-            videos[current].classList.add('visible');
-        }, 8000);
     </script>
 
 </body>
