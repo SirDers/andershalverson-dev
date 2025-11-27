@@ -161,8 +161,7 @@ h1 {
 /* Project cards */
 .project {
     width: 50%;
-    padding-bottom: 50px;
-    padding-top: 20px;
+    padding-bottom: 70px;
     position: relative;
 }
 
@@ -180,7 +179,7 @@ h1 {
 
 .description {
     position: absolute;
-    top: 20px;
+    top: 0px;
     width: 420px;
     text-align: left;
 
