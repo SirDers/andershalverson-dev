@@ -182,7 +182,7 @@ h1 {
     top: 0px;
     width: 420px;
     text-align: left;
-
+    font-size: 16px;
 
     background: rgba(255, 255, 255, 0.04);
     padding: 0 20px 0 20px;
@@ -285,7 +285,6 @@ h1 {
 }
 
 /* CONTACT */
-
 .contact {
     display: inline-flex;
     flex-direction: column;
