@@ -274,25 +274,31 @@ h1 {
 }
 
 /* CONTACT */
+
+.contact {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    background: rgb(30, 30, 30);
+    padding: 8px;
+    border-radius: 16px;
+}
+
 .contact a {
     color: white;
     font-size: 24px;
     font-weight: bold;
-    background-color: rgb(40, 40, 40);
-    border-radius: 8px;
-    padding: 8px 8px;
-    margin: 25px auto;
+    padding: 16px 8px;
     text-decoration: none;
-    text-align: center;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
+    gap: 12px;
 }
-
 
 .contact a:hover {
     background-color: rgb(100, 100, 100);
+    border-radius: 8px;
 }
 
 /* Icons */
