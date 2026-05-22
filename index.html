@@ -52,10 +52,15 @@
     <section id="projects">
         <h1>PROJECTS</h1>
 
-        <div class="timeline">
+        <div class="project-sort" role="group" aria-label="Project sort options">
+            <button class="sort-button active" type="button" data-sort="relevant" aria-pressed="true">Most Relevant</button>
+            <button class="sort-button" type="button" data-sort="timeline" aria-pressed="false">Timeline</button>
+        </div>
+
+        <div class="timeline projects-list" data-projects>
 
             <!-- Quick Whips -->
-            <div class="project left fade-up">
+            <div class="project left fade-up" data-start-date="2022-04" data-last-worked="2022-06">
                 <div class="content" style="background: rgb(60, 30, 0); border-color: rgb(240, 200, 160)">
                     <h2>Quick Whips</h2>
                     <p class="date">Apr, 2022 -- Jun, 2022</p>
@@ -81,7 +86,7 @@
             </div>
 
             <!-- Breath of the Galaxies -->
-            <div class="project right fade-up">
+            <div class="project right fade-up" data-start-date="2022-09" data-last-worked="2022-11">
                 <div class="content" style="background: rgb(0, 30, 60); border-color: rgb(160, 200, 240)">
                     <h2>Breath of the Galaxies</h2>
                     <p class="date">Sep, 2022 -- Nov, 2022</p>
@@ -99,7 +104,7 @@
             </div>
 
             <!-- Super Short Bros. -->
-            <div class="project left fade-up">
+            <div class="project left fade-up" data-start-date="2024-11" data-last-worked="2024-12">
                 <div class="content" style="background: rgb(0, 60, 30); border-color: rgb(160, 240, 200)">
                     <h2>Super Short Bros.</h2>
                     <p class=" date">Nov, 2024 -- Dec, 2024</p>
@@ -122,7 +127,7 @@
             </div>
 
             <!-- Gardens of New Babylon -->
-            <div class="project right fade-up">
+            <div class="project right fade-up" data-start-date="2025-04" data-last-worked="2025-05">
                 <div class="content" style="background: rgb(0, 60, 0); border-color: rgb(160, 240, 160)">
                     <h2>Gardens of New Babylon</h2>
                     <p class="date">Apr, 2025 -- May, 2025</p>
@@ -143,7 +148,7 @@
             </div>
 
             <!-- Justice is Blind -->
-            <div class="project left fade-up">
+            <div class="project left fade-up" data-start-date="2025-09" data-last-worked="2025-12">
                 <div class="content" style="background: rgb(60, 40, 40); border-color: rgb(240, 200, 200)">
                     <h2>Justice is Blind</h2>
                     <p class=" date">Sep, 2025 -- Dec, 2025</p>
@@ -167,7 +172,7 @@
             </div>
 
             <!-- Stella Game Engine -->
-            <div class="project right fade-up">
+            <div class="project right fade-up" data-start-date="2025-12" data-last-worked="9999-12">
                 <div class="content" style="background: rgb(0, 0, 0); border-color: rgb(200, 200, 200)">
                     <h2>Stella Game Engine</h2>
                     <p class="date">Dec, 2025 -- Present</p>
@@ -248,6 +253,47 @@
             const homeHeight = window.innerHeight * 0.7;
             small.classList.toggle('show', window.scrollY > homeHeight);
         });
+
+        const projectsContainer = document.querySelector('[data-projects]');
+        const projectCards = Array.from(projectsContainer.querySelectorAll('.project'));
+        const sortButtons = document.querySelectorAll('.sort-button');
+
+        projectCards.forEach((project, index) => {
+            project.dataset.timelineIndex = index;
+        });
+
+        function sortProjects(sortMode) {
+            const sortedProjects = [...projectCards].sort((a, b) => {
+                if (sortMode === 'timeline') {
+                    return Number(a.dataset.timelineIndex) - Number(b.dataset.timelineIndex);
+                }
+
+                const lastWorked = b.dataset.lastWorked.localeCompare(a.dataset.lastWorked);
+                if (lastWorked !== 0) return lastWorked;
+
+                return b.dataset.startDate.localeCompare(a.dataset.startDate);
+            });
+
+            sortedProjects.forEach((project, index) => {
+                project.classList.toggle('left', index % 2 === 0);
+                project.classList.toggle('right', index % 2 !== 0);
+                projectsContainer.appendChild(project);
+            });
+
+            projectsContainer.classList.toggle('timeline-view', sortMode === 'timeline');
+
+            sortButtons.forEach(button => {
+                const isActive = button.dataset.sort === sortMode;
+                button.classList.toggle('active', isActive);
+                button.setAttribute('aria-pressed', isActive);
+            });
+        }
+
+        sortButtons.forEach(button => {
+            button.addEventListener('click', () => sortProjects(button.dataset.sort));
+        });
+
+        sortProjects('relevant');
 
         // Fade animations when elements enter view
         const observer = new IntersectionObserver((entries) => {
