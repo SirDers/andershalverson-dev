@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Anders Halverson</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="style=v5.css">
+    <link rel="stylesheet" href="style=v6.css">
 </head>
 
 <body>
@@ -117,6 +117,9 @@
                         </a>
                     </p>
                     -->
+                    <div class="project-logos" aria-label="Project tools">
+                        <img src="Skill_Logos/c3logo-lightbg.svg" alt="Construct 3 logo">
+                    </div>
                 </div>
             </div>
 
@@ -141,6 +144,9 @@
                             Play Game
                         </a>
                     </p>
+                    <div class="project-logos" aria-label="Project tools">
+                        <img src="Skill_Logos/c3logo-lightbg.svg" alt="Construct 3 logo">
+                    </div>
                 </div>
             </div>
 
@@ -169,6 +175,12 @@
                             Play Game
                         </a>
                     </p>
+                    <div class="project-logos" aria-label="Project tools">
+                        <img src="Skill_Logos/JavaFX_Logo.webp" alt="JavaFX logo">
+                        <img src="Skill_Logos/maven-logo-white-on-black.purevec.svg" alt="Maven logo">
+                        <img src="Skill_Logos/Eclipse2014_RGB.svg" alt="Eclipse logo">
+                        <img src="Skill_Logos/IntelliJ_IDEA-white.svg" alt="IntelliJ logo">
+                    </div>
                 </div>
             </div>
 
@@ -188,8 +200,17 @@
                         iterative playtesting, mechanic balancing, and creating a polished, playable prototype.
                     </p>
                     <p>
+                        Through this project, I gained a deeper understanding of Microsoft Word and Excel, learning to
+                        leverage their more advanced features for creating design documentation, tracking playtesting
+                        feedback, and coordinating development tasks across the team.
+                    </p>
+                    <p>
                         The game won "Most Innovative Mechanics" at the Stout Game Expo (SGX) Spring 2025.
                     </p>
+                    <div class="project-logos" aria-label="Project tools">
+                        <img src="Skill_Logos/Microsoft_Office_Word_(2025–present).svg" alt="Microsoft Word logo">
+                        <img src="Skill_Logos/Microsoft_Office_Excel_(2025–present).svg" alt="Microsoft Excel logo">
+                    </div>
                 </div>
             </div>
 
@@ -209,6 +230,12 @@
                     <p>
                         I plan to use this engine for various games in the future.
                     </p>
+                    <div class="project-logos" aria-label="Project tools">
+                        <img src="Skill_Logos/ISO_C++_Logo.svg" alt="C++ logo">
+                        <img src="Skill_Logos/Opengl-logo.svg" alt="OpenGL logo">
+                        <img src="Skill_Logos/Visual_Studio_Icon_2026.svg" alt="Visual Studio logo">
+                        <img src="Skill_Logos/CLion-white.svg" alt="CLion logo">
+                    </div>
                 </div>
             </div>
 
@@ -227,11 +254,18 @@
                         in Unreal Editor.
                     </p>
                     <p>
+                        To support long-term development, the project includes modular gameplay architecture using state
+                        machines, specialized gameplay components, shared context structures, and other software
+                        engineering practices. This approach helped keep systems organized, extensible, and easier for
+                        multiple programmers to work on simultaneously.
+                    </p>
+                    <p>
                         In addition to technical leadership, I create documentation and presentations to ensure clarity
                         and alignment between programming and art teams, working closely with the Art Lead.
                     </p>
                     <p>
-                        The game won "Best Visual Art" at the Stout Game Expo (SGX) Spring 2026.
+                        The game won "Best Visual Art" at the Stout Game Expo (SGX) Spring 2026, and the team is
+                        continuing development through the summer to further refine and polish the game.
                     </p>
                     <p>
                         <a class="game-link" href="https://brandonwatier.itch.io/frost-x-rex"
@@ -239,6 +273,11 @@
                             Play Game
                         </a>
                     </p>
+                    <div class="project-logos" aria-label="Project tools">
+                        <img src="Skill_Logos/ISO_C++_Logo.svg" alt="C++ logo">
+                        <img src="Skill_Logos/UE-Secondary-Logo-2023-Horizontal-White.svg" alt="Unreal Engine logo">
+                        <img src="Skill_Logos/Rider-white.svg" alt="Rider logo">
+                    </div>
                 </div>
             </div>
 
@@ -287,6 +326,38 @@
             project.dataset.timelineIndex = index;
         });
 
+        const timelineGap = 70;
+
+        function updateTimelineSpacing() {
+            if (!projectsContainer.classList.contains('timeline-view')) {
+                projectCards.forEach(project => project.style.removeProperty('--timeline-spacing'));
+                return;
+            }
+
+            projectCards.forEach(project => {
+                const content = project.querySelector('.content');
+                const description = project.querySelector('.description');
+
+                if (!content || !description || getComputedStyle(description).position !== 'absolute') {
+                    project.style.removeProperty('--timeline-spacing');
+                    return;
+                }
+
+                const contentHeight = content.getBoundingClientRect().height;
+                const descriptionHeight = description.getBoundingClientRect().height;
+                const spacing = Math.max(timelineGap, descriptionHeight - contentHeight + timelineGap);
+
+                project.style.setProperty('--timeline-spacing', `${Math.ceil(spacing)}px`);
+            });
+        }
+
+        let timelineSpacingFrame;
+
+        function requestTimelineSpacingUpdate() {
+            cancelAnimationFrame(timelineSpacingFrame);
+            timelineSpacingFrame = requestAnimationFrame(updateTimelineSpacing);
+        }
+
         function sortProjects(sortMode) {
             const sortedProjects = [...projectCards].sort((a, b) => {
                 if (sortMode === 'timeline') {
@@ -306,6 +377,7 @@
             });
 
             projectsContainer.classList.toggle('timeline-view', sortMode === 'timeline');
+            requestTimelineSpacingUpdate();
 
             sortButtons.forEach(button => {
                 const isActive = button.dataset.sort === sortMode;
@@ -317,6 +389,9 @@
         sortButtons.forEach(button => {
             button.addEventListener('click', () => sortProjects(button.dataset.sort));
         });
+
+        window.addEventListener('resize', requestTimelineSpacingUpdate);
+        window.addEventListener('load', requestTimelineSpacingUpdate);
 
         sortProjects('relevant');
 
