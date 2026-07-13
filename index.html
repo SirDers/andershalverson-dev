@@ -11,10 +11,6 @@
 
 <body>
 
-    <div class="ambient-light ambient-light-one" aria-hidden="true"></div>
-    <div class="ambient-light ambient-light-two" aria-hidden="true"></div>
-    <div class="pointer-glow" aria-hidden="true"></div>
-
     <!-- Big Header -->
     <header id="big-header">
         <nav>
@@ -49,7 +45,6 @@
 
 
         <div class="home-content fade-in">
-            <p class="eyebrow">PORTFOLIO · 2026</p>
             <h1>ANDERS HALVERSON</h1>
             <h2>GAME DESIGNER // PRODUCER // SOFTWARE ENGINEER</h2>
             <div class="hero-actions">
@@ -62,7 +57,6 @@
 
     <!-- ABOUT -->
     <section id="about">
-        <p class="section-kicker">01 · PLAYER PROFILE</p>
         <h1>ABOUT <span>ME</span></h1>
         <div class="about">
             <img src="portrait.webp" alt="" />
@@ -89,7 +83,6 @@
 
     <!-- PROJECT -->
     <section id="projects">
-        <p class="section-kicker">02 · SELECTED QUESTS</p>
         <h1>PROJECT <span>ARCHIVE</span></h1>
 
         <div class="project-sort" role="group" aria-label="Project sort options">
@@ -300,7 +293,6 @@
 
     <!-- RESUME -->
     <section id="resume">
-        <p class="section-kicker">03 · THE SPECS</p>
         <h1>RESUME</h1>
         <p class="section-intro">A closer look at my experience, education, and toolkit.</p>
         <iframe src="Halverson, Anders - Resume.pdf" width="75%" height=1150px></iframe>
@@ -308,7 +300,6 @@
 
     <!-- CONTACT -->
     <section id="contact">
-        <p class="section-kicker">04 · START A CO-OP</p>
         <h1>LET'S <span>CONNECT</span></h1>
         <p class="section-intro">Have a game, an idea, or an interesting problem? I’d love to hear about it.</p>
         <div class="contact">
@@ -426,31 +417,6 @@
 
         video.addEventListener("loadedmetadata", () => {
             video.currentTime = 5;
-        });
-
-        // Tactile glass interactions
-        const pointerGlow = document.querySelector('.pointer-glow');
-        window.addEventListener('pointermove', (event) => {
-            document.documentElement.style.setProperty('--pointer-x', `${event.clientX}px`);
-            document.documentElement.style.setProperty('--pointer-y', `${event.clientY}px`);
-            pointerGlow.classList.add('visible');
-        }, { passive: true });
-
-        document.querySelectorAll('.projects-list .project').forEach(card => {
-            card.addEventListener('pointermove', event => {
-                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-                const rect = card.getBoundingClientRect();
-                const x = (event.clientX - rect.left) / rect.width - 0.5;
-                const y = (event.clientY - rect.top) / rect.height - 0.5;
-                card.style.setProperty('--tilt-x', `${y * -2.5}deg`);
-                card.style.setProperty('--tilt-y', `${x * 2.5}deg`);
-                card.style.setProperty('--shine-x', `${(x + 0.5) * 100}%`);
-                card.style.setProperty('--shine-y', `${(y + 0.5) * 100}%`);
-            });
-            card.addEventListener('pointerleave', () => {
-                card.style.removeProperty('--tilt-x');
-                card.style.removeProperty('--tilt-y');
-            });
         });
 
         const sections = document.querySelectorAll('section[id]');
