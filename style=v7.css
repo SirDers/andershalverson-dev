@@ -822,7 +822,7 @@ section > h1 span {
 .timeline.timeline-view .description p:first-child { margin-top: 0; }
 .timeline.timeline-view .description p:last-child { margin-bottom: 0; }
 
-.end { width: 180px; height: 180px; margin-top: 30px; justify-content: center; border: 1px solid var(--glass-border); background: rgba(255,255,255,.04); box-shadow: var(--shadow); backdrop-filter: blur(12px); color: #82a9cc; }
+.end { width: 180px; height: 180px; margin-top: 30px; justify-content: center; border: 1px solid var(--glass-border); background: rgba(255,255,255,.04); box-shadow: var(--shadow); backdrop-filter: blur(12px); color: white; }
 #resume { min-height: auto; }
 #resume iframe { width: min(900px, 100%); border: 1px solid var(--glass-border); border-radius: 4px; background: white; box-shadow: var(--shadow); }
 #contact { min-height: 75vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
